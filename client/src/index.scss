@@ -1,0 +1,237 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+
+/* The side navigation menu */
+
+.sidenav {
+    .nav-close i {
+        border-right: solid 1px #818181;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+    ul {
+        .navbutton {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 25px;
+            display: inline-block;
+            transition: 0.3s;
+            border: #818181 solid 1px;
+            border-radius: 10px;
+            width: 100%;
+            margin: 0px;
+            color: #f1f1f1;
+            &:hover {
+                background-color: #222;
+            }
+        }
+        min-width: 250px;
+        padding: 10px;
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    margin: 0px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    &.collapsed {
+        width: 0px;
+    }
+}
+
+.sidenav-background {
+    background-color: rgba(0, 0, 0, .65);
+    backdrop-filter: blur(7px);
+}
+
+.navbar-toggler {
+    &:not(.collapsed) span:nth-child(1) {
+        position: absolute;
+        left: 12px;
+        top: 10px;
+        -webkit-transform: rotate(135deg);
+        -moz-transform: rotate(135deg);
+        -o-transform: rotate(135deg);
+        transform: rotate(135deg);
+        opacity: 0.9;
+    }
+    &:not(.collapsed) span:nth-child(2) {
+        height: 12px;
+        visibility: hidden;
+        background-color: transparent;
+    }
+    &:not(.collapsed) span:nth-child(3) {
+        position: absolute;
+        left: 12px;
+        top: 10px;
+        -webkit-transform: rotate(-135deg);
+        -moz-transform: rotate(-135deg);
+        -o-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+        opacity: 0.9;
+    }
+    span {
+        display: block;
+        background-color: #444;
+        height: 3px;
+        width: 25px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        position: relative;
+        left: 0;
+        opacity: 1;
+    }
+    span:nth-child(1),
+    span:nth-child(3) {
+        -webkit-transition: transform .35s ease-in-out;
+        -moz-transition: transform .35s ease-in-out;
+        -o-transition: transform .35s ease-in-out;
+        transition: transform .35s ease-in-out;
+    }
+    /* Hamburger animation */
+    &:focus,
+    &.navbar-toggler:active {
+        outline: 0px;
+    }
+}
+
+.navbar-toggle-holder {
+    position: fixed;
+    top: 10px;
+    left: 260px;
+    z-index: 0;
+    background-color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: left .5s;
+    z-index: 10;
+    padding: 0px;
+    &.collapsed {
+        left: 10px;
+    }
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 300px;
+    margin: 0px;
+    width: 100%;
+}
+
+.loading img {
+    height: 100%;
+}
+
+#main {
+    padding: 0px;
+}
+
+.fake {
+    &.button {
+        align-items: normal;
+        background-color: rgba(0, 0, 0, 0);
+        border-color: rgb(0, 0, 238);
+        border-style: none;
+        box-sizing: content-box;
+        color: rgb(0, 0, 238);
+        cursor: pointer;
+        display: inline;
+        font: inherit;
+        padding: 0;
+        perspective-origin: 0 0;
+        text-align: start;
+        text-decoration: underline;
+        transform-origin: 0 0;
+        width: auto;
+        -moz-appearance: none;
+        -webkit-logical-height: 1em;
+        /* Chrome ignores auto, so we have to use this hack to set the correct height  */
+        -webkit-logical-width: auto;
+        /* Chrome ignores auto, but here for completeness */
+    }
+    /* Mozilla uses a pseudo-element to show focus on buttons, */
+    /* but anchors are highlighted via the focus pseudo-class. */
+    @supports (-moz-appearance:none) {
+        /* Mozilla-only */
+        button::-moz-focus-inner {
+            /* reset any predefined properties */
+            border: none;
+            padding: 0;
+        }
+        button:focus {
+            /* add outline to focus pseudo-class */
+            outline-style: dotted;
+            outline-width: 1px;
+        }
+    }
+}
+
+.currentContent {
+    max-height: 700px;
+    transition: max-height .5s ease-out;
+    overflow-y: hidden;
+    &.shrink {
+        max-height: 0px;
+    }
+}
+
+@-webkit-keyframes autofill {
+    to {
+        color: #666;
+        background: transparent;
+    }
+}
+
+@keyframes autofill {
+    to {
+        color: #666;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+#passwordHelp {
+    .invalid {
+        color: #993333;
+        font-weight: bold;
+    }
+    .validated {
+        color: #339933;
+        font-weight: bold;
+    }
+}
