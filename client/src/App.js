@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "./App.scss";
-import Welcome from "./components/Welcome";
-import UserEntry from "./components/UserEntry";
-import DynamicBackground from "./components/DynamicBackground";
+import Navbar from "./components/General/Navbar";
+import DynamicBackground from "./components/General/DynamicBackground";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +13,7 @@ class App extends Component {
     fetch("http://localhost:9000/api/user/me")
       .then((res) => res.text())
       .then((res) => this.setState({ apiResponse: res }))
-      .catch((err) => err);
+      .catch((err) => err); 
   }
 
   componentDidMount() {
@@ -22,18 +21,22 @@ class App extends Component {
   }
 
   render() {
-    const isLoggedIn = false;
-
-    if (isLoggedIn) {
-      return <Welcome />;
-    } else {
-      return (
-        <div>
-          <UserEntry />
-          <DynamicBackground />
-        </div>
-      );
-    }
+    return (
+      <div>
+        <Navbar />
+        <DynamicBackground />
+      </div>
+    );
+    // if (isLoggedIn) {
+    //   return <Welcome />;
+    // } else {
+    //   return (
+    //     <div>
+    //       <UserEntry />
+    //       <DynamicBackground />
+    //     </div>
+    //   );
+    // }
   }
 }
 

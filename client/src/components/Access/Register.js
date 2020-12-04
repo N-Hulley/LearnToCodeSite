@@ -1,11 +1,13 @@
 import React from "react";
-import DynamicComponent from "./DynamicComponent";
+import DynamicComponent from "../General/DynamicComponent";
+import lang from "../../Lang";
+import validate from "../../Utils";
 import PasswordHint from "./InputConditions";
-import lang from "../Lang";
-import validate from "../Utils";
+
 class Register extends DynamicComponent {
   constructor(props) {
     super(props, 500);
+    // params={{data: props.data.name}}
     const { changeContent, currentlyShowing } = this.props;
     this.title = "Register";
     this.state = {
@@ -16,15 +18,15 @@ class Register extends DynamicComponent {
       passwordValue: "",
       passwordValid: false,
       passwordHintVisible: false,
-      passwordConditions: {},
+      passwordConditions: [],
 
       emailValue: "",
       emailValid: false,
-      emailConditions: {},
+      emailConditions: [],
 
       displaynameValue: "",
       displaynameValid: false,
-      displaynameConditions: {},
+      displaynameConditions: [],
     };
 
     this.changeContent = changeContent;
@@ -49,12 +51,25 @@ class Register extends DynamicComponent {
 
     let value = evt.target.value;
     let validated = validate[field](value);
+    let conditions = validated.conditions;
+
+    // Get conditions and translate it using the lang json
+    for (let i = 0; i < conditions.length; i++) {
+      try {
+        conditions[i] = lang.current.userEntry.hints[field].register[conditions[i]];        
+      } catch (error) {
+        // Incase the condition isn't specified in the lang
+        conditions[i] = lang.current.userEntry.hints[field].register[conditions[i]];
+      }
+    }
 
     this.setState({
       [field+"Value"]: value,
       [field+"Valid"]: validated.valid,
-      [field+"Conditions"]: validated.conditions
+      [field+"Conditions"]: conditions
     });
+
+    // Check if all fields are valid
     this.setState({fieldsValid: 
       this.state.passwordValid &&
       this.state.emailValid &&
@@ -95,6 +110,10 @@ class Register extends DynamicComponent {
                 {lang.current.userEntry.name}
               </label>
             </div>
+              <PasswordHint
+                conditions={this.state.displaynameConditions}
+                //ref={this.passwordHint}
+              ></PasswordHint>
             <div className="md-form">
               <input
                 type="email"
@@ -122,11 +141,6 @@ class Register extends DynamicComponent {
               >
                 Password
               </label>
-              <PasswordHint
-                lang={lang.current.userEntry.passwordHint.register}
-                currentlyShowing={this.state.passwordHintVisible}
-                ref={this.passwordHint}
-              ></PasswordHint>
             </div>
             <div className="md-form password-confirm"></div>
             <button

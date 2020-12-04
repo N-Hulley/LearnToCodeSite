@@ -1,7 +1,6 @@
 import React from "react";
-import DynamicComponent from "./DynamicComponent";
-import PasswordHint from"./PasswordHint"
-import lang from "../Lang"
+import DynamicComponent from "../General/DynamicComponent";
+import PasswordHint from"./InputConditions";
 class Login extends DynamicComponent {
   constructor(props) {
     super(props, 500);
@@ -61,7 +60,7 @@ class Login extends DynamicComponent {
                   onChange={this.validateFields}
                 />
                 <label htmlFor="loginFormPassword">Password</label>
-                <PasswordHint lang={lang.current.userEntry.passwordHint.login} currentlyShowing={this.state.passwordHintVisible}></PasswordHint>
+                <PasswordHint conditions={["Hello"]}></PasswordHint>
               </div>
               <button
                 disabled
@@ -70,7 +69,7 @@ class Login extends DynamicComponent {
                 type="submit"
                 onClick={this.signIn.bind(this)}
               >
-                Sign in
+                 Sign in
               </button>
               <p
                 id="loginError"
