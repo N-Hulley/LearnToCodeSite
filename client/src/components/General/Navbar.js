@@ -59,10 +59,10 @@ class Navbar extends Component {
         </div>
         <div className="content">
           <Switch>
-            <Route exact path="/"><Welcome /></Route>
-            <Route path={`/login`}><AccessMain openningPage="Login"/></Route>
-            <Route path={`/register`}><AccessMain openningPage="Register"/></Route>
-            <Route><Error404 /></Route>
+            <Route exact path="/" component={props => (<Welcome {...props} />)}></Route>
+            <Route path={`/login`} component={props => (<AccessMain {...props} openningPage="Login"/>)}></Route>
+            <Route path={`/register`} component={props => (<AccessMain {...props} openningPage="Register"/>)}></Route>
+            <Route component={props => (<Error404 />)}></Route>
             {/* <Route exact path="/accousnt"  component={AccessMain} /> */}
           </Switch>
               
