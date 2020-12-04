@@ -1,6 +1,19 @@
 class Lang {
     constructor() {
         this.eng = {
+            general: {
+                navBar: {
+
+                },
+                welcome: {
+                    createAccount: "Create an account",
+                    useAsGuest: "Continue as Guest",
+                    useAsGuestModal: {
+                        areYouSure: "Use Guest Mode?",
+                        description: "With guest mode, all classes are accessable but you won't be able to keep track of what you've done.",
+                    },
+                },
+            },
             userEntry: {
                 login: "Login",
                 register: "Register",

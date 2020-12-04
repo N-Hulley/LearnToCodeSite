@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Route, NavLink, HashRouter, Switch} from "react-router-dom";
+import { Route, NavLink, HashRouter, Switch } from "react-router-dom";
+import "../../Lang";
 import AccessMain from "../Access/Main";
 import Welcome from "../General/Welcome";
 import Error404 from "./Error404";
@@ -8,8 +9,10 @@ import "./Navbar.scss";
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "", isOpen: false};
-
+    this.state = {
+      apiResponse: "",
+      isOpen: false
+    };
   }
 
   toggleCollapse() {
@@ -59,10 +62,30 @@ class Navbar extends Component {
         </div>
         <div className="content">
           <Switch>
-            <Route exact path="/" component={props => (<Welcome {...props} />)}></Route>
-            <Route path={`/login`} component={props => (<AccessMain {...props} openningPage="Login"/>)}></Route>
-            <Route path={`/register`} component={props => (<AccessMain {...props} openningPage="Register"/>)}></Route>
-            <Route component={props => (<Error404 />)}></Route>
+            <Route
+              exact
+              path="/"
+              component={(props) => <Welcome {...props} />}
+            ></Route>
+            <Route
+              path={`/login`}
+              component={(props) => (
+                <AccessMain {...props} openningPage="Login" />
+              )}
+            ></Route>
+            <Route
+              path={`/register`}
+              component={(props) => (
+                <AccessMain {...props} openningPage="Register" />
+              )}
+            ></Route>
+            <Route
+              path={`/courses`}
+              component={(props) => (
+                <AccessMain {...props} openningPage="Courses" />
+              )}
+            ></Route>
+            <Route component={(props) => <Error404 />}></Route>
             {/* <Route exact path="/accousnt"  component={AccessMain} /> */}
           </Switch>
               
